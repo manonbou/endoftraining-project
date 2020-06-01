@@ -5,7 +5,7 @@ Dans le cadre du projet de fin de formation de la Coding Academy, nous avons ré
 
 ## Prérequis et installation
 
-Afin de pouvoir utiliser cette application web, il est nécessaire de posseder les éléments suivants :
+Afin de pouvoir utiliser cette application web, il est nécessaire d'installer préalablement les éléments suivants :
 * Node
 * MongoDB
 * Npm ou Yarn
