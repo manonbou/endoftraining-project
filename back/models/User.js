@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//const uniqueValidator = require("mongoose-unique-validator"); non installé
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -27,7 +26,5 @@ const userSchema = new Schema({
     required: true,
   }],
 });
-
-//userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model("User", userSchema);

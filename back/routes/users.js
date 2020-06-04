@@ -18,7 +18,6 @@ router.route("/register").post(async (req, res, next) => {
       new HttpError("The credentials are wrong, please fix them.", 422)
     );
   }
-  //console.log(req.body);
 
   let existingUser;
 
@@ -98,7 +97,6 @@ router.route("/login").post(async (req, res, next) => {
   let existingUser;
   try {
     existingUser = await User.findOne({ email: req.body.email });
-    console.log(existingUser);
   } catch (err) {
     const error = new HttpError(
       "Loggin in failed, please try again later.",
@@ -184,9 +182,8 @@ router.route("/profile/:uid").get(async (req, res, next) => {
   const userId = req.params.uid;
   let user;
   try {
-    //console.log('1er')
     user = await User.findById(userId);
-    console.log(user);
+    
   } catch (err) {
     const error = new HttpError(
       "Display user failed, please try again later.",
@@ -194,8 +191,6 @@ router.route("/profile/:uid").get(async (req, res, next) => {
     );
     return next(error);
   }
-
-  //console.log('2nd')
   res.json({
     user: user.toObject({ getters: true }),
   });
@@ -206,15 +201,12 @@ router.route("/profile/:uid").get(async (req, res, next) => {
 router.route("/profile/edit/:uid").patch(
   [
     check("login").isLength({ min: 5, max: 30 }),
-    // check("email").isEmail(),
     check("password").notEmpty(),
   ],
   async (req, res, next) => {
     const errors = validationResult(req);
-    console.log("test1");
 
     if (!errors.isEmpty()) {
-      // console.log(errors);
       throw new HttpError(
         "Invalid inputs passed, please check your data.",
         422
@@ -222,8 +214,6 @@ router.route("/profile/edit/:uid").patch(
     }
     const { login, email, password } = req.body;
     const userId = req.params.uid;
-    console.log("test2");
-    console.log(req.body);
 
     let user;
     try {
@@ -232,7 +222,6 @@ router.route("/profile/edit/:uid").patch(
       const error = new HttpError("Something went wrong, try again.", 500);
       return next(error);
     }
-    console.log(req.body);
 
     let hashedPassword;
     try {
@@ -249,7 +238,6 @@ router.route("/profile/edit/:uid").patch(
     user.email = email;
     user.password = hashedPassword;
 
-    console.log(user.login);
     try {
       await user.save();
     } catch (err) {

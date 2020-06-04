@@ -38,5 +38,3 @@ const NavLinks = (props) => {
 };
 
 export default NavLinks;
-
-//AUTHENTICATE POSE PB QUAND ON PASSE SUR LA PAGE REGISTER, N'EST PLUS SOULIGNÉ !!!!!!!!!!!!!!!

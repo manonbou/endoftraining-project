@@ -41,7 +41,7 @@ const UserProfile = (props) => {
         { Authorization: "Bearer " + auth.token }
       );
       
-      props.onDeleteActivity(userId);
+      props.onDeleteUser(userId);
       
     } catch (err) {}
   };

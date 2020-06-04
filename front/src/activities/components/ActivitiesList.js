@@ -25,7 +25,6 @@ const ActivitiesList = (props) => {
           title={activity.title}
           description={activity.description}
           date={activity.date}
-          //startTime={activity.startTime}
           location={activity.location}
           creatorId={activity.creator}
           onDelete={props.onDeleteActivity}

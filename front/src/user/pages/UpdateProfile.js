@@ -20,7 +20,7 @@ import "./ProfileForm.css";
 const UpdateProfile = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient(); 
-  const [loadedActivity, setLoadedActivity] = useState();
+  const [loadedUser, setLoadeduser] = useState();
   const userId = useParams().userId;
   const history = useHistory();
 
@@ -43,13 +43,13 @@ const UpdateProfile = () => {
   );
 
   useEffect(() => {
-    const fetchActivityToUpdate = async () => {
+    const fetchUserToUpdate = async () => {
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/users/profile/${userId}`
         );
 
-        setLoadedActivity(responseData.user);
+        setLoadeduser(responseData.user);
         setFormData(
           {
             login: {
@@ -69,10 +69,10 @@ const UpdateProfile = () => {
         );
       } catch (err) {}
     };
-    fetchActivityToUpdate();
+    fetchUserToUpdate();
   }, [sendRequest, userId, setFormData]);
 
-  const activityUpdateSubmitHandler = async (event) => {
+  const UserUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
       await sendRequest(
@@ -97,7 +97,7 @@ const UpdateProfile = () => {
     );
   }
 
-  if (!loadedActivity && !error) {
+  if (!loadedUser && !error) {
     return (
       <div className="center">
         <Card>
@@ -110,8 +110,8 @@ const UpdateProfile = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {!isLoading && loadedActivity && (
-        <form className="place-form" onSubmit={activityUpdateSubmitHandler}>
+      {!isLoading && loadedUser && (
+        <form className="place-form" onSubmit={UserUpdateSubmitHandler}>
           <Input
             id="login"
             element="input"
@@ -120,7 +120,7 @@ const UpdateProfile = () => {
             validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(20)]}
             errorText="Please enter a valid login (between 6 and 20 characters)."
             onInput={inputHandler}
-            initialValue={loadedActivity.login}
+            initialValue={loadedUser.login}
             initialValid={true}
           />
           <Input
@@ -130,7 +130,7 @@ const UpdateProfile = () => {
             validators={[VALIDATOR_EMAIL()]}
             errorText="Please enter a valid email adress."
             onInput={inputHandler}
-            initialValue={loadedActivity.email}
+            initialValue={loadedUser.email}
             initialValid={true}
           />
           <Input
@@ -141,7 +141,7 @@ const UpdateProfile = () => {
             validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(30)]}
             errorText="Please enter a valid password (between 6 and 30 characters)."
             onInput={inputHandler}
-            initialValue={loadedActivity.password}
+            initialValue={loadedUser.password}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>

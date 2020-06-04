@@ -42,7 +42,6 @@ const NewActivity = () => {
   );
 
   const history = useHistory(); //hook to redirect (push method, replace method)
-  console.log(auth.userId);
 
     const activitySubmitHandler = async (event) => {
       event.preventDefault();
@@ -94,7 +93,7 @@ const NewActivity = () => {
           id="date"
           element="input"
           label="Date"
-          validators={[VALIDATOR_MINLENGTH(10)]} //------------61------------- A VOIR AVEC EMAIL VALIDATOR !!!!!!!
+          validators={[VALIDATOR_MINLENGTH(10)]}
           errorText="Please enter a valid date (format dd/mm/yyyy)."
           onInput={inputHandler}
         />

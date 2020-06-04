@@ -16,8 +16,6 @@ const activitySchema = new Schema ({
     date: {
         required: true,
         type:String
-        // type: Date,
-        // default: Date.now,
     },
     location: {
         type: String,
@@ -25,7 +23,7 @@ const activitySchema = new Schema ({
     },
 
     creator: {
-        type:  mongoose.Types.ObjectId, ref:'User', //Schema.Types.Object,
+        type:  mongoose.Types.ObjectId, ref:'User', 
         required: true
     },
 

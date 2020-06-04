@@ -78,7 +78,6 @@ const ActivityItem = (props) => {
           <div className="place-item__info">
             <h2>{props.title}</h2>
             <h3>{props.date}</h3>
-            {/* <h3>{props.startTime}</h3> */}
             <h3>{props.location}</h3>
             <p>{props.description}</p>
           </div>

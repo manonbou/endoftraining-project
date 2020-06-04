@@ -10,26 +10,26 @@ import { AuthContext } from "../../shared/context/auth-context";
 const Profile = () => {
 
   const auth = useContext(AuthContext);
-  const [loadedActivities, setLoadedActivities] = useState();
+  const [loadedUser, setLoadedUser] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const userId = useParams().userId;
   const history = useHistory();
 
   useEffect(() => {
-    const fetchActivities = async () => {
+    const fetchUser= async () => {
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/users/profile/${userId}`
         );
 
-        setLoadedActivities(responseData.user);
+        setLoadedUser(responseData.user);
       } catch (err) {}
     };
-    fetchActivities();
+    fetchUser();
   }, [sendRequest, userId]);
 
-  const activityDeletedHandler = () => {
+  const userDeletedHandler = () => {
     auth.logout();
     history.push("/");
   };
@@ -42,10 +42,10 @@ const Profile = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedActivities && (
+      {!isLoading && loadedUser && (
         <UserProfile
-          items={loadedActivities}
-          onDeleteActivity={activityDeletedHandler}
+          items={loadedUser}
+          onDeleteUser={userDeletedHandler}
         />
       )}
     </React.Fragment>

@@ -21,5 +21,3 @@ module.exports = (req, res, next) => {
 };
 
 
-//headers automatically proposed by express.js
-//Authorization: 'Bearer TOKEN'
