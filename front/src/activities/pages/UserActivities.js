@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import ActivitiesList from "../components/ActivitiesList";
 import ErrorModal from "../../shared/components/UIElement/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElement/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
+
 const UserActivities = () => {
   const [loadedActivities, setLoadedActivities] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
+  const history = useHistory()
   const userId = useParams().userId;
 
   useEffect(() => {
@@ -25,10 +26,8 @@ const UserActivities = () => {
     fetchActivities();
   }, [sendRequest, userId]);
 
-  const activityDeletedHandler = (deletedActivityId) => {
-    setLoadedActivities((prevActivities) =>
-      prevActivities.filter((activity) => activity.id !== deletedActivityId)
-    );
+  const activityDeletedHandler = () => {
+    history.push("/")
   };
 
   return (
