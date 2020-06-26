@@ -1,6 +1,6 @@
 # Projet de fin de formation - APPLICOPAIN
 
-Dans le cadre du projet de fin de formation de la Coding Academy, nous avons réalisé un site permettant de planifier des activités avec ses amis.
+Dans le cadre du projet de fin de formation de la Coding Academy (Epitech Lyon, 2020), nous avons réalisé un site permettant de planifier des activités avec ses amis.
 
 
 ## Prérequis et installation
